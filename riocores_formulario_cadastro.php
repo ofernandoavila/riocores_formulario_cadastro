@@ -50,6 +50,11 @@ function riocores_form_start() {
         <label for="phone"><?php _e('Celular', 'woocommerce'); ?></label>
         <input type="tel" class="input-text" name="phone" id="phone" value="<?php if (!empty($_POST['phone'])) echo esc_attr($_POST['phone']); ?>" />
     </p>
+    
+    <p class="form-row form-row-wide">
+        <label for="nome"><?php _e('Nome', 'woocommerce'); ?></label>
+        <input type="text" class="input-text" name="nome" id="nome" value="<?php if (!empty($_POST['nome'])) echo esc_attr($_POST['nome']); ?>" />
+    </p>
 
     <script>
     jQuery(document).ready(function($) {
