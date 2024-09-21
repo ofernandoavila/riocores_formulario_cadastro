@@ -24,7 +24,7 @@ jobs:
                 name: riocores_formulario_cadastro
                 path: artifact
 
-    Staging:
+    Production:
         runs-on: ubuntu-latest
         environment:
             name: PRD
