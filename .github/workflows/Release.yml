@@ -1,0 +1,49 @@
+name: Release
+
+on:
+    workflow_dispatch:
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Preparando artefato
+              run: |
+                mkdir -p artifact
+                cp -r ./css ./artifact
+                cp -r ./functions.php ./artifact
+                cp -r ./riocores_formulario_cadastro.php ./artifact
+
+            - name: Salvando artefato
+              uses: actions/upload-artifact@v4
+              with:
+                name: riocores_formulario_cadastro
+                path: artifact
+
+    Staging:
+        runs-on: ubuntu-latest
+        environment:
+            name: PRD
+            url: ${{ vars.BASE_URL }}
+            
+        needs: Build
+        steps:
+            - name: Download artifact
+              uses: actions/download-artifact@v4
+              with:
+                name: riocores_formulario_cadastro
+                path: ./artifact
+
+            - name: Deploy
+              uses: easingthemes/ssh-deploy@main
+              with:
+                SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+                ARGS: "-rlgoDzvc --delete --exclude={'.htaccess'}"
+                REMOTE_HOST: ${{ vars.HOST }}
+                REMOTE_USER: ${{ vars.USER }}
+                SOURCE: "artifact/"
+                TARGET: ${{ vars.TARGET }}
