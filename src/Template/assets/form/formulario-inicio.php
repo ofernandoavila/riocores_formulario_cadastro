@@ -20,8 +20,8 @@
             <input type="numeric" class="input-text" name="cpf" id="cpf" maxlength="14" value="<?php if (!empty($_POST['cpf'])) echo esc_attr($_POST['cpf']); ?>" />
         </p>
         <p class="form-row form-row-wide">
-            <label for="birthdate"><?php _e('Data de Nascimento', 'woocommerce'); ?></label>
-            <input type="date" class="input-text" name="birthdate" id="birthdate" value="<?php if (!empty($_POST['birthdate'])) echo esc_attr($_POST['birthdate']); ?>" />
+            <label for="data_nascimento"><?php _e('Data de Nascimento', 'woocommerce'); ?></label>
+            <input type="date" class="input-text" name="data_nascimento" id="data_nascimento" value="<?php if (!empty($_POST['data_nascimento'])) echo esc_attr($_POST['data_nascimento']); ?>" />
         </p>
     </div>
 
