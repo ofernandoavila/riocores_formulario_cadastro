@@ -3,9 +3,22 @@ jQuery(document).ready(function($) {
         if ($('.riocores_radio:checked').val() == 'juridica') {
             $('#pj_fields').show();
             $('#pf_fields').hide();
+
+            ToggleRequired('cnpj', true);
+            ToggleRequired('razao_social', true);
+
+            ToggleRequired('cpf', false);
+            ToggleRequired('data_nascimento', false);
+            
         } else {
             $('#pf_fields').show();
             $('#pj_fields').hide();
+            
+            ToggleRequired('cnpj', false);
+            ToggleRequired('razao_social', false);
+
+            ToggleRequired('cpf', true);
+            ToggleRequired('data_nascimento', true);
         }
     }).change();
 
@@ -20,5 +33,9 @@ jQuery(document).ready(function($) {
     $('input[name="cnpj"]').on( 'input', function() {
         $(this).val(CNPJMascara($(this).val()));
     });
+
+    function ToggleRequired(campo, isRequired) {
+        $('input[name="' + campo + '"]').prop('required', isRequired);
+    }
 });
 
