@@ -1,0 +1,15 @@
+{
+    "name": "ofernandoavila/riocores_formulario_cadastro",
+    "autoload": {
+        "psr-4": {
+            "ofernandoavila\\RiocoresFormularioCadastro\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fernando Avila",
+            "email": "fernandoavilajunior@gmail.com"
+        }
+    ],
+    "require": {}
+}

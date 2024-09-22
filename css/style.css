@@ -1,5 +1,24 @@
-#riocores-formulario-cadastro {
-  background-color: red;
+#riocores-formulario-cadastro .row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#riocores-formulario-cadastro .row .riocores_radio_container input[type=radio] {
+  display: none;
+}
+#riocores-formulario-cadastro .row .riocores_radio_container:has(input[type=radio]:checked) label {
+  background-color: #ececec;
+}
+#riocores-formulario-cadastro .row .riocores_radio_container:first-of-type label {
+  border-right: none;
+}
+#riocores-formulario-cadastro .row .riocores_radio_container > label {
+  border: 1px solid #000;
+  padding: 8px;
+}
+#riocores-formulario-cadastro .row .riocores_radio_container > label:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

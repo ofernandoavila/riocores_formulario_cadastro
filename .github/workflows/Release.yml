@@ -15,7 +15,9 @@ jobs:
               run: |
                 mkdir -p artifact
                 cp -r ./css ./artifact
-                cp -r ./functions.php ./artifact
+                cp -r ./js ./artifact
+                cp -r ./src ./artifact
+                cp -r ./composer.json ./artifact
                 cp -r ./riocores_formulario_cadastro.php ./artifact
 
             - name: Salvando artefato
@@ -47,3 +49,13 @@ jobs:
                 REMOTE_USER: ${{ vars.USER }}
                 SOURCE: "artifact/"
                 TARGET: ${{ vars.TARGET }}
+
+            - name: Instalação de dependências
+              uses: nekiro/ssh-job@main
+              with:
+                  host: ${{ vars.HOST }}
+                  key: ${{ secrets.SSH_KEY }}
+                  user: ${{ vars.USER }}
+                  command: |
+                      cd ${{ vars.TARGET }}
+                      /opt/cpanel/composer/bin/composer install --no-dev --no-progress -a

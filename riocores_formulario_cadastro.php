@@ -6,68 +6,38 @@ Version: 1.0
 Author: Fernando Ávila
 */
 
+use ofernandoavila\RiocoresFormularioCadastro\Controller\FormController;
+use ofernandoavila\RiocoresFormularioCadastro\Template\TemplateBuilder;
+
+add_action( 'init', 'riocores_init' );
+add_action( 'wp_enqueue_scripts', 'riocores_estilos_enqueue' );
 add_action('woocommerce_register_form_start', 'riocores_form_start');
 add_action('woocommerce_register_form_end', 'riocores_form_end');
+add_action('woocommerce_register_post', 'riocores_form_validation', 10, 3);
+add_action('woocommerce_created_customer', 'riocores_form_save');
 
-function riocores_form_end() {
-    echo '</div>';
+function riocores_init() {
+    require_once( 'vendor/autoload.php' );
+}
+
+function riocores_estilos_enqueue() {
+    wp_enqueue_script( 'riocores_js_lib', plugin_dir_url(__FILE__) . '/js/lib.js', [], '1.0.0' );
+    wp_enqueue_script( 'riocores_js', plugin_dir_url(__FILE__) . '/js/main.js', ['jquery' , 'riocores_js_lib'], '1.0.0' );
+    wp_enqueue_style( 'riocores_estilo', plugin_dir_url(__FILE__) . '/css/style.css' );
 }
 
 function riocores_form_start() {
-    ?>
-    <div id="riocores-formulario-cadastro">
-    <p class="form-row form-row-wide">
-        <label for="customer_type"><?php _e('Tipo de Cliente', 'woocommerce'); ?></label>
-        <select name="customer_type" id="customer_type" required>
-            <option value="fisica"><?php _e('Pessoa Física', 'woocommerce'); ?></option>
-            <option value="juridica"><?php _e('Pessoa Jurídica', 'woocommerce'); ?></option>
-        </select>
-    </p>
-    
-    <div id="pf_fields">
-        <p class="form-row form-row-wide">
-            <label for="cpf"><?php _e('CPF', 'woocommerce'); ?></label>
-            <input type="text" class="input-text" name="cpf" id="cpf" value="<?php if (!empty($_POST['cpf'])) echo esc_attr($_POST['cpf']); ?>" />
-        </p>
-        <p class="form-row form-row-wide">
-            <label for="birthdate"><?php _e('Data de Nascimento', 'woocommerce'); ?></label>
-            <input type="date" class="input-text" name="birthdate" id="birthdate" value="<?php if (!empty($_POST['birthdate'])) echo esc_attr($_POST['birthdate']); ?>" />
-        </p>
-    </div>
+    echo TemplateBuilder::get_template('form/formulario-inicio');
+}
 
-    <div id="pj_fields" style="display:none;">
-        <p class="form-row form-row-wide">
-            <label for="cnpj"><?php _e('CNPJ', 'woocommerce'); ?></label>
-            <input type="text" class="input-text" name="cnpj" id="cnpj" value="<?php if (!empty($_POST['cnpj'])) echo esc_attr($_POST['cnpj']); ?>" />
-        </p>
-        <p class="form-row form-row-wide">
-            <label for="razao_social"><?php _e('Razão Social', 'woocommerce'); ?></label>
-            <input type="text" class="input-text" name="razao_social" id="razao_social" value="<?php if (!empty($_POST['razao_social'])) echo esc_attr($_POST['razao_social']); ?>" />
-        </p>
-    </div>
+function riocores_form_end() {
+    echo TemplateBuilder::get_template('form/formulario-fim');
+}
 
-    <p class="form-row form-row-wide">
-        <label for="phone"><?php _e('Celular', 'woocommerce'); ?></label>
-        <input type="tel" class="input-text" name="phone" id="phone" value="<?php if (!empty($_POST['phone'])) echo esc_attr($_POST['phone']); ?>" />
-    </p>
-    
-    <p class="form-row form-row-wide">
-        <label for="nome"><?php _e('Nome', 'woocommerce'); ?></label>
-        <input type="text" class="input-text" name="nome" id="nome" value="<?php if (!empty($_POST['nome'])) echo esc_attr($_POST['nome']); ?>" />
-    </p>
+function riocores_form_validation($username, $email, $validation_errors) {
+    return FormController::validate($username, $email, $validation_errors);
+}
 
-    <script>
-    jQuery(document).ready(function($) {
-        $('#customer_type').change(function() {
-            if ($(this).val() == 'juridica') {
-                $('#pj_fields').show();
-                $('#pf_fields').hide();
-            } else {
-                $('#pf_fields').show();
-                $('#pj_fields').hide();
-            }
-        }).change();
-    });
-    </script>
-    <?php
+function riocores_form_save($customer_id) {
+    return FormController::save($customer_id);
 }

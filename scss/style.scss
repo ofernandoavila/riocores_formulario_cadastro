@@ -1,3 +1,32 @@
 #riocores-formulario-cadastro {
-    background-color: red;
+    .row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .riocores_radio_container {
+            input[type="radio"] {
+                display: none;
+            }
+
+            &:has(input[type="radio"]:checked) label {
+                background-color: #ececec;
+            }
+            
+            &:first-of-type label {
+                border-right: none;
+            }
+            
+            & > label {
+                border: 1px solid #000;
+                padding: 8px;
+                
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
