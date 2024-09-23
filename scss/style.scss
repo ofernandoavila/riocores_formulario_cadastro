@@ -1,9 +1,5 @@
 .riocores-formulario-cadastro {
     .row {
-        justify-content: flex-start !important;
-    }
-
-    .row {
         width: 100%;
         display: flex;
         align-items: center;
@@ -44,7 +40,7 @@
     }
 }
 
-table .riocores-formulario-cadastro {
+td > .riocores-formulario-cadastro {
     .row {
         justify-content: flex-start !important;
     }
