@@ -1,24 +1,40 @@
-#riocores-formulario-cadastro .row {
+.riocores-formulario-cadastro .row {
+  justify-content: flex-start !important;
+}
+.riocores-formulario-cadastro .row {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#riocores-formulario-cadastro .row .riocores_radio_container input[type=radio] {
+.riocores-formulario-cadastro .row .riocores_radio_container input[type=radio] {
   display: none;
 }
-#riocores-formulario-cadastro .row .riocores_radio_container:has(input[type=radio]:checked) label {
-  background-color: #ececec;
+.riocores-formulario-cadastro .row .riocores_radio_container:has(input[type=radio]:checked) label {
+  background-color: #1e90ff;
+  color: #fff;
 }
-#riocores-formulario-cadastro .row .riocores_radio_container:first-of-type label {
+.riocores-formulario-cadastro .row .riocores_radio_container:first-of-type label {
   border-right: none;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
-#riocores-formulario-cadastro .row .riocores_radio_container > label {
-  border: 1px solid #000;
+.riocores-formulario-cadastro .row .riocores_radio_container:last-of-type label {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.riocores-formulario-cadastro .row .riocores_radio_container > label {
+  border: 1px solid #ccc;
+  border-radius: 8px;
   padding: 8px;
+  background-color: #fff;
 }
-#riocores-formulario-cadastro .row .riocores_radio_container > label:hover {
+.riocores-formulario-cadastro .row .riocores_radio_container > label:hover {
   cursor: pointer;
+}
+
+table .riocores-formulario-cadastro .row {
+  justify-content: flex-start !important;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,4 +1,6 @@
 function CPFMascara(valor) {
+    if(valor === '' || valor === undefined) return '';
+    
     const cleanedCPF = valor.replace(/\D/g, "");
  
     let formattedCPF = cleanedCPF;
@@ -27,6 +29,8 @@ function CPFSanitize(valor) {
 }
 
 function TelefoneMascara(telefone) {
+    if(telefone === '' || telefone === undefined) return '';
+
     const input = telefone.replace(/\D/g, '');
 
     let formattedValue = '';

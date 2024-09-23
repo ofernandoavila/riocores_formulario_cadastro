@@ -1,4 +1,4 @@
-<div id="riocores-formulario-cadastro">
+<div class="riocores-formulario-cadastro">
     <p class="form-row form-row-wide">
         <label for="customer_type"><?php _e('Tipo de Cliente', 'woocommerce'); ?></label>
         

@@ -1,4 +1,8 @@
-#riocores-formulario-cadastro {
+.riocores-formulario-cadastro {
+    .row {
+        justify-content: flex-start !important;
+    }
+
     .row {
         width: 100%;
         display: flex;
@@ -11,22 +15,37 @@
             }
 
             &:has(input[type="radio"]:checked) label {
-                background-color: #ececec;
+                background-color: #1e90ff;
+                color: #fff;
             }
             
             &:first-of-type label {
                 border-right: none;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+            }
+            
+            &:last-of-type label {
+                border-top-left-radius: 0px;
+                border-bottom-left-radius: 0px;
             }
             
             & > label {
-                border: 1px solid #000;
+                border: 1px solid #ccc;
+                border-radius: 8px;
                 padding: 8px;
-                
+                background-color: #fff;
 
                 &:hover {
                     cursor: pointer;
                 }
             }
         }
+    }
+}
+
+table .riocores-formulario-cadastro {
+    .row {
+        justify-content: flex-start !important;
     }
 }
